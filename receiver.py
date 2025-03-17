@@ -3,6 +3,8 @@ import sys
 import time
 
 ipkharej = sys.argv[1]
+os.system("ip tunnel del tun6to4")
+os.system("ip -6 tunnel del gre1")
 os.system("ip tunnel add tun6to4 mode sit ttl 254 remote {}".format(ipkharej))
 os.system("ip link set dev tun6to4 up")
 os.system("ip addr add fc01::1/64 dev tun6to4")
